@@ -13,14 +13,10 @@ echo "$PASS" | sudo sed -i 's/^#\?PermitRootLogin.*/PermitRootLogin no/' /etc/ss
 
 adduser adi
 usermod -aG sudo adi
-su - adi
 echo "$PASS" | sudo systemctl restart ssh
 systemctl is-active ssh.socket
 echo "$PASS" | sudo systemctl stop ssh.socket
 echo "$PASS" | sudo systemctl disable ssh.socket
 
-curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.3/install.sh | bash
-. ~/.bashrc
-nvm install --lts
-npm i -g openclaw@latest
-openclaw onboard --install-daemon
+sudo -u adi -H bash -lc 'curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.3/install.sh | bash'
+sudo -u adi -H bash -lc 'export NVM_DIR="$HOME/.nvm" && [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh" && nvm install --lts && npm i -g openclaw@latest && openclaw onboard --install-daemon'
