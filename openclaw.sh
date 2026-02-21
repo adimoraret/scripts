@@ -20,7 +20,7 @@ echo "$PASS" | sudo systemctl stop ssh.socket
 echo "$PASS" | sudo systemctl disable ssh.socket
 
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.3/install.sh | bash
-source ~/.bashrc
+. ~/.bashrc
 nvm install --lts
 npm i -g openclaw@latest
 openclaw onboard --install-daemon
